@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
+
   devise_for :users
+
+  resources :question_details
+  resources :answers
+  resources :questions
+  resources :test_questions
+  resources :test_tags
+  resources :tags
+  resources :tests_assigns
+  resources :tests
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

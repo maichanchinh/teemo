@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Tests Assigns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Test</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tests_assigns.each do |tests_assign| %>
+      <tr>
+        <td><%= tests_assign.test_id %></td>
+        <td><%= tests_assign.user_id %></td>
+        <td><%= link_to 'Show', tests_assign %></td>
+        <td><%= link_to 'Edit', edit_tests_assign_path(tests_assign) %></td>
+        <td><%= link_to 'Destroy', tests_assign, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tests assign', new_tests_assign_path %>
