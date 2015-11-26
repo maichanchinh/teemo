@@ -11,7 +11,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126091305) do
+ActiveRecord::Schema.define(version: 20151126095928) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id", limit: 4
+    t.string   "value",       limit: 255
+    t.integer  "user_id",     limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "question_details", force: :cascade do |t|
+    t.integer  "question_id", limit: 4
+    t.string   "content",     limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text     "content",    limit: 65535
+    t.integer  "type",       limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "test_questions", force: :cascade do |t|
+    t.integer  "test_id",     limit: 4
+    t.integer  "question_id", limit: 4
+    t.integer  "sort",        limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  create_table "test_tags", force: :cascade do |t|
+    t.integer  "test_id",    limit: 4
+    t.integer  "tag_id",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  create_table "tests", force: :cascade do |t|
+    t.integer  "user_id",      limit: 4
+    t.string   "name",         limit: 255
+    t.text     "descripetion", limit: 65535
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "tests_assigns", force: :cascade do |t|
+    t.integer  "test_id",    limit: 4
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  limit: 255, default: "", null: false
