@@ -14,7 +14,15 @@ class TestsController < ApplicationController
 
   # GET /tests/new
   def new
-    @test = Test.new
+    me = current_user
+    user = User.find(me)
+    @user_current = user
+    if user.has_role? :admin
+      @test = Test.new
+    else
+      redirect_to "/", :alert => "Access denied."
+    end
+
   end
 
   # GET /tests/1/edit
@@ -25,7 +33,6 @@ class TestsController < ApplicationController
   # POST /tests.json
   def create
     @test = Test.new(test_params)
-
     respond_to do |format|
       if @test.save
         format.html { redirect_to @test, notice: 'Test was successfully created.' }
@@ -62,6 +69,7 @@ class TestsController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_test
       @test = Test.find(params[:id])
