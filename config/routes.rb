@@ -2,16 +2,22 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :question_details
   resources :answers
-  resources :questions
-  resources :test_questions
-  resources :test_tags
+
   resources :tags
-  resources :tests_assigns
-  resources :tests
+
+  #reWrite url Test assign, test Tags, test questions
+  resources :tests do
+    resources :tests_assigns
+    resources :test_tags
+
+    resources :questions do
+      resources :question_details #test question details
+    end
+  end
 
   root 'tests#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
