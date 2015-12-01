@@ -10,8 +10,9 @@
           </ul>
         </div>
     <% end %>
-
-    <%= f.hidden_field :user_id,  :value => @user_current.id %>
+    <% if @user_current.id != nil %>
+        <%= f.hidden_field :user_id, :value => @user_current.id %>
+    <% end %>
     <div class="field">
       <%= f.label :name %><br>
       <%= f.text_field :name %>

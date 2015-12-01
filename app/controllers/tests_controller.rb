@@ -1,28 +1,25 @@
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_current_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_permitted
   # GET /tests
   # GET /tests.json
   def index
-    @tests = Test.all
+    @tests = Test.select("distinct tests.*, users.email").joins(:user)
   end
 
   # GET /tests/1
   # GET /tests/1.json
   def show
+    @test = Test.find(params[:id])
+    @questions = @test.questions
   end
+
 
   # GET /tests/new
   def new
-    me = current_user
-    user = User.find(me)
-    @user_current = user
-    if user.has_role? :admin
-      @test = Test.new
-    else
-      redirect_to "/", :alert => "Access denied."
-    end
-
+    @test = Test.new
+    @user_current = User.find(current_user)
   end
 
   # GET /tests/1/edit
@@ -35,7 +32,7 @@ class TestsController < ApplicationController
     @test = Test.new(test_params)
     respond_to do |format|
       if @test.save
-        format.html { redirect_to @test, notice: 'Test was successfully created.' }
+        format.html { redirect_to test_questions_path(@test), notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }
@@ -70,13 +67,19 @@ class TestsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_test
-      @test = Test.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_test
+    @test = Test.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def test_params
-      params.require(:test).permit(:user_id, :name, :descripetion)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def test_params
+    params.require(:test).permit(:user_id, :name, :descripetion)
+  end
+
+  def set_current_user
+    me = current_user
+    user = User.find(me)
+    @user_current = user
+  end
 end

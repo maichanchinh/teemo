@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  has_many :tests
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,6 +9,7 @@ class User < ActiveRecord::Base
 
   # add cancan
   ROLES = %i[admin author]
+
   def roles=(roles)
     roles = [*roles].map { |r| r.to_sym }
     self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
@@ -22,4 +25,6 @@ class User < ActiveRecord::Base
     roles.include?(role)
   end
   # end cancan
+
+
 end

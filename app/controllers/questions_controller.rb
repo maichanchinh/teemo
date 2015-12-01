@@ -1,10 +1,11 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-
+  # load_and_authorize_resource
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    @test = Test.find(params[:test_id])
+    @questions = @test.questions
   end
 
   # GET /questions/1
@@ -14,7 +15,8 @@ class QuestionsController < ApplicationController
 
   # GET /questions/new
   def new
-    @question = Question.new
+    @test = Test.find(params[:test_id])
+    @question = @test.questions.build
   end
 
   # GET /questions/1/edit
@@ -24,11 +26,12 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    @question = Question.new(question_params)
+    @test = Test.find(params[:test_id])
+    @question = @test.questions.new(question_params)
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
+        format.html { redirect_to test_questions_url, notice: 'Question was successfully created.' }
         format.json { render :show, status: :created, location: @question }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to test_question_path(:id => @question.id), notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -56,7 +59,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
+      format.html { redirect_to test_questions_url, notice: 'Question was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
