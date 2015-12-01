@@ -1,0 +1,21 @@
+<div class="panel panel-primary">
+  <div class='panel-heading'>
+    <div class='panel-title'><%= 'Forgot password'%></div>
+  </div>
+  <div class='panel-body'>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
+
+      <div class="form-group">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, :class => 'form-control input-sm' %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "Reset password", :class => 'btn btn-info btn-sm' %>
+      </div>
+    <% end %>
+    <hr>
+    <%= render "devise/shared/links" %>
+  </div>
+</div>

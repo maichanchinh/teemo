@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  get 'users/registrations' => 'devise/registrations'
+
   resources :question_details
   resources :answers
   resources :questions
