@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Test:</strong>
+  <%= @tests_assign.test_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @tests_assign.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_tests_assign_path(@tests_assign) %> |
+<%= link_to 'Back', tests_assigns_path %>

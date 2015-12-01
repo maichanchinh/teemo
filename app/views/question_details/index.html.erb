@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Question Details</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Content</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @question_details.each do |question_detail| %>
+      <tr>
+        <td><%= question_detail.question_id %></td>
+        <td><%= question_detail.content %></td>
+        <td><%= link_to 'Show', question_detail %></td>
+        <td><%= link_to 'Edit', edit_question_detail_path(question_detail) %></td>
+        <td><%= link_to 'Destroy', question_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Question detail', new_question_detail_path %>

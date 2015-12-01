@@ -1,0 +1,26 @@
+<%= form_for(@test) do |f| %>
+    <% if @test.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@test.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+          <ul>
+            <% @test.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <% if @user_current.id != nil %>
+        <%= f.hidden_field :user_id, :value => @user_current.id %>
+    <% end %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.text_area :descripetion %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
