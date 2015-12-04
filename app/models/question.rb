@@ -1,9 +1,12 @@
 class Question < ActiveRecord::Base
 
-  QUESTION_TYPE = %w[Radio Checkbox Textarea]
+  enum type: {Radio:10, CheckBox:20, TextAera:30}
+
+
   has_many :test_questions
   has_many :tests, :through => :test_questions
-
+  #
   self.inheritance_column = nil
+
 
 end

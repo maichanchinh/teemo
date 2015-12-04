@@ -9,36 +9,35 @@
   </div>
 </div>
 <div class="row list-tests">
-  <% if @tests.blank? %>
-      <div class="alert alert-warning">
-        <strong>Test is empty!</strong>
-      </div>
-  <% else %>
+<% if @tests.blank? %>
+  <div class="alert alert-warning">
+    <strong>Test is empty!</strong>
+  </div>
+<% else %>
+  <table class="table table-bordered table-hover table-responsive">
+    <thead>
+    <tr>
+      <th>User create</th>
+      <th>Name</th>
+      <th>Descripetion</th>
+      <th colspan="3"></th>
+    </tr>
+    </thead>
 
-      <table class="table table-bordered table-hover table-responsive">
-        <thead>
-        <tr>
-          <th>User create</th>
-          <th>Name</th>
-          <th>Descripetion</th>
-          <th colspan="3"></th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <% @tests.each do |test| %>
-            <tr>
-              <td><%= test.user.email %></td>
-              <td><%= test.name %></td>
-              <td><%= test.descripetion %></td>
-              <td><%= link_to 'Show Question', test %></td>
-              <td><%= link_to 'Edit', edit_test_path(test) %></td>
-              <td><%= link_to 'Destroy', test, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-            </tr>
-        <% end %>
-        </tbody>
-      </table>
-  <% end %>
+    <tbody>
+    <% @tests.each do |test| %>
+      <tr>
+        <td><%= test.user.email %></td>
+        <td><%= test.name %></td>
+        <td><%= test.descripetion %></td>
+        <td><%= link_to 'Show Question', test %></td>
+        <td><%= link_to 'Edit', edit_test_path(test) %></td>
+        <td><%= link_to 'Destroy', test, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>
 </div>
 
 

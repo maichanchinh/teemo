@@ -25,6 +25,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def layout_by_resource
+    if devise_controller?
+      'authentication'
+    else
+      'application'
+    end
+  end
+
   def check_permitted
     user = User.find(current_user)
     unless user.has_role? :admin
