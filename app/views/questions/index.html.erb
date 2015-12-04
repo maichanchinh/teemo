@@ -16,9 +16,9 @@
           <tr>
             <td><%= question.content %></td>
             <td><%= question.type %></td>
-            <td><%= link_to 'Show', test_question_path(:id => question.id) %></td>
-            <td><%= link_to 'Edit', test_question_url(:id => question.id) %></td>
-            <td><%= link_to 'Destroy', test_question_path(:id => question.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+            <td><%= link_to 'Show', question_path(:id => question.id) %></td>
+            <td><%= link_to 'Edit', edit_question_url(:id => question.id) %></td>
+            <td><%= link_to 'Destroy', question_path(:id => question.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
           </tr>
       <% end %>
       <p></p>
@@ -27,5 +27,5 @@
 <% end %>
 <br>
 
-<%= link_to 'New Question', new_test_question_url
+<%= link_to 'New Question', new_question_url
 %>

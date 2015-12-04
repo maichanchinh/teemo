@@ -2,18 +2,17 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  resources :question_details
   resources :answers
-
   resources :tags
 
   #reWrite url Test assign, test Tags, test questions
   resources :tests do
     resources :tests_assigns
     resources :test_tags
-
-    resources :questions do
-      resources :question_details #test question details
-    end
+  end
+  resources :questions do
+    resources :question_details #test question details
   end
 
   root 'pages#show', page: "about"
@@ -23,7 +22,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  # root 'tests#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

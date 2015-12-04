@@ -4,6 +4,9 @@
   <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
     <%= link_to 'New Test', new_test_path, class: 'btn btn-block btn-lg btn-success' %>
   </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <%= link_to 'New questions', new_question_path, class: 'btn btn-block btn-lg btn-success' %>
+  </div>
 </div>
 <div class="row list-tests">
   <% if @tests.blank? %>
@@ -25,7 +28,7 @@
         <tbody>
         <% @tests.each do |test| %>
             <tr>
-              <td><%= test.email %></td>
+              <td><%= test.user.email %></td>
               <td><%= test.name %></td>
               <td><%= test.descripetion %></td>
               <td><%= link_to 'Show Question', test %></td>

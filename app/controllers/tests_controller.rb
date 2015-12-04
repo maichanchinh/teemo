@@ -1,17 +1,16 @@
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
-  before_action :set_current_user, only: [:show, :edit, :update, :destroy]
   before_action :check_permitted
   # GET /tests
   # GET /tests.json
   def index
-    @tests = Test.select("distinct tests.*, users.email").joins(:user)
+    @tests = current_user.tests
   end
 
   # GET /tests/1
   # GET /tests/1.json
   def show
-    @test = Test.find(params[:id])
+    @test = current_user.tests.find(params[:id])
     @questions = @test.questions
   end
 
@@ -32,7 +31,7 @@ class TestsController < ApplicationController
     @test = Test.new(test_params)
     respond_to do |format|
       if @test.save
-        format.html { redirect_to test_questions_path(@test), notice: 'Test was successfully created.' }
+        format.html { redirect_to test_path(@test), notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }
@@ -75,11 +74,5 @@ class TestsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def test_params
     params.require(:test).permit(:user_id, :name, :descripetion)
-  end
-
-  def set_current_user
-    me = current_user
-    user = User.find(me)
-    @user_current = user
   end
 end
