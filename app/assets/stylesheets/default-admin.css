@@ -1,0 +1,26 @@
+.admin-container{
+    margin: auto;
+    max-width: 100%;
+}
+
+.admin-content{
+    margin: auto;
+    max-width: 1080px
+}
+
+.menu-left{
+
+}
+
+.content-right{
+    border: solid;
+    border-radius: 5px;
+    border-color: #9aa4af;
+    border-width: 2px;
+}
+
+.list-group{
+    font-size: 14px;
+    font-weight: bold;
+}
+
