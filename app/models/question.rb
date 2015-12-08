@@ -8,5 +8,6 @@ class Question < ActiveRecord::Base
   #
   self.inheritance_column = nil
 
+  has_many :question_detail
 
 end

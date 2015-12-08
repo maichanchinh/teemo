@@ -1,29 +1,36 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Question Details</h1>
 
-<table>
-  <thead>
+<% if @question_details.blank? %>
+<div class="alert alert-warning">
+  <p>Question details empty</p>
+</div>
+<% else %>
+  <table class="table table-hover">
+    <thead>
     <tr>
       <th>Question</th>
       <th>Content</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @question_details.each do |question_detail| %>
       <tr>
         <td><%= question_detail.question_id %></td>
         <td><%= question_detail.content %></td>
-        <td><%= link_to 'Show', question_detail %></td>
-        <td><%= link_to 'Edit', edit_question_detail_path(question_detail) %></td>
-        <td><%= link_to 'Destroy', question_detail, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', question_question_detail_path(question_detail.question_id, question_detail.id) %></td>
+        <td><%= link_to 'Edit', edit_question_question_detail_url(question_detail.question_id, question_detail.id) %></td>
+        <td><%= link_to 'Destroy', question_question_detail_path(question_detail.question_id, question_detail.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
-
+    </tbody>
+  </table>
+<% end %>
 <br>
-
-<%= link_to 'New Question detail', new_question_detail_path %>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <%= link_to 'New Question detail', new_question_question_detail_url, class: 'btn btn-success' %>
+</div>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <%= link_to 'Back to list question', question_question_details_path, class: 'btn btn-success' %>
+</div>

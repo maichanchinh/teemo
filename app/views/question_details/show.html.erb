@@ -10,5 +10,9 @@
   <%= @question_detail.content %>
 </p>
 
-<%= link_to 'Edit', edit_question_detail_path(@question_detail) %> |
-<%= link_to 'Back', question_details_path %>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <%= link_to 'Edit', edit_question_question_detail_url({id: @question_detail}), class: 'btn btn-success' %>
+</div>
+<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+  <%= link_to 'Back', question_question_details_path, class: 'btn btn-success' %>
+</div>

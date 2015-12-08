@@ -1,14 +1,54 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
 
-<p>
-  <strong>Content:</strong>
-  <%= @question.content %>
-</p>
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <p><strong>Content:</strong></p>
+    <%= @question.content %>
+  </div>
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+    <p><strong>Type:</strong></p>
+    <%= @question.type %>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 
-<p>
-  <strong>Type:</strong>
-  <%= @question.type %>
-</p>
+    <% if @question_details.blank? %>
+        <div class="alert alert-warning">
+          <p>Question details empty</p>
+        </div>
+    <% else %>
 
-<%= link_to 'Edit', edit_question_path(id: @question.id) %> |
-<%= link_to 'Back', questions_path %>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>answers contents</th>
+            <th colspan="3"></th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <% @question_details.each do |question_detail| %>
+              <tr>
+                <td><%= question_detail.content %></td>
+                <td><%= link_to 'Show', question_question_detail_path(question_detail.question_id, question_detail.id) %></td>
+                <td><%= link_to 'Edit', edit_question_question_detail_url(question_detail.question_id, question_detail.id) %></td>
+                <td><%= link_to 'Destroy', question_question_detail_path(question_detail.question_id, question_detail.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+    <% end %>
+
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <%= link_to 'add answers', new_question_question_detail_url(question_id: @question.id), class: 'btn btn-success' %>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <%= link_to 'Edit question', edit_question_path(id: @question.id), class: 'btn btn-success' %>
+  </div>
+  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <%= link_to 'Back list question', questions_path, class: 'btn btn-success' %>
+  </div>
+</div>

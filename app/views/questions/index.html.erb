@@ -17,6 +17,7 @@
           <tr>
             <td><%= question.content %></td>
             <td><%= question.type %></td>
+            <td><%= link_to 'Add detail', new_question_question_detail_url(:question_id => question.id) %></td>
             <td><%= link_to 'Show', question_path(:id => question.id) %></td>
             <td><%= link_to 'Edit', edit_question_url(:id => question.id) %></td>
             <td><%= link_to 'Destroy', question_path(:id => question.id), method: :delete, data: {confirm: 'Are you sure?'} %></td>

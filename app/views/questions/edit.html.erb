@@ -2,5 +2,8 @@
 
 <%= render :partial =>  'form',locals: {question: @question} %>
 
-<%= link_to 'Show', @question %> |
-<%= link_to 'Back', questions_path %>
+<div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-top: 15px;">
+  <%= link_to 'Show', @question %> |
+  <%= link_to 'Back', questions_path %>
+
+</div>

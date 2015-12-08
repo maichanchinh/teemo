@@ -4,21 +4,17 @@ class TestsController < ApplicationController
   # GET /tests
   # GET /tests.json
   def index
-    @tests = current_user.tests
+    @tests = Test.all
   end
 
   # GET /tests/1
   # GET /tests/1.json
   def show
-    @test = current_user.tests.find(params[:id])
-    @questions = @test.questions
   end
-
 
   # GET /tests/new
   def new
     @test = Test.new
-    @user_current = User.find(current_user)
   end
 
   # GET /tests/1/edit
@@ -31,7 +27,7 @@ class TestsController < ApplicationController
     @test = Test.new(test_params)
     respond_to do |format|
       if @test.save
-        format.html { redirect_to test_path(@test), notice: 'Test was successfully created.' }
+        format.html { redirect_to @test, notice: 'Test was successfully created.' }
         format.json { render :show, status: :created, location: @test }
       else
         format.html { render :new }
@@ -65,14 +61,16 @@ class TestsController < ApplicationController
   end
 
   private
+    def check_authorization_admin
+      redirect_to "/" , notice: "you do not have authority to use this function" unless current_user.has_role? :admin
+    end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_test
+      @test = Test.find(params[:id])
+    end
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_test
-    @test = Test.find(params[:id])
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def test_params
-    params.require(:test).permit(:user_id, :name, :descripetion)
-  end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def test_params
+      params.require(:test).permit(:user_id, :name, :descripetion)
+    end
 end

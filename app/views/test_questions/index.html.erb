@@ -18,9 +18,9 @@
         <td><%= test_question.test_id %></td>
         <td><%= test_question.question_id %></td>
         <td><%= test_question.sort %></td>
-        <td><%= link_to 'Show', test_question %></td>
-        <td><%= link_to 'Edit', edit_test_question_path(test_question) %></td>
-        <td><%= link_to 'Destroy', test_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', test_test_questions_url %></td>
+        <td><%= link_to 'Edit', edit_test_test_question_path(test_question) %></td>
+        <td><%= link_to 'Destroy', test_test_question_path, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +28,5 @@
 
 <br>
 
-<%= link_to 'New Test question', new_test_question_path %>
+<%= link_to 'New Test question', new_test_test_question_path %>
+

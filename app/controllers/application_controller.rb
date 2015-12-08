@@ -9,21 +9,6 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   layout :layout_by_resource
 
-  def layout_by_resource
-    if devise_controller?
-      'authentication'
-    else
-      'application'
-    end
-  end
-
-  def layout_by_resource
-    if devise_controller?
-      'authentication'
-    else
-      'application'
-    end
-  end
 
   def layout_by_resource
     if devise_controller?
@@ -53,7 +38,5 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up)  { |u| u.permit(  :email,:password, :password_confirmation, roles: []) }
   end
-
-
 
 end

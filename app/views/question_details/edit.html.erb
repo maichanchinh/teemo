@@ -1,6 +1,6 @@
 <h1>Editing Question Detail</h1>
 
-<%= render 'form' %>
+<%= render partial: 'form', locals: {question: @question, question_details: @question_details} %>
 
-<%= link_to 'Show', @question_detail %> |
-<%= link_to 'Back', question_details_path %>
+<%= link_to 'Show', question_question_detail_path(id: params[:id], question_id: params[:question_id]) %> |
+<%= link_to 'Back', question_question_details_path %>

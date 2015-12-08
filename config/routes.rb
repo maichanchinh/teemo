@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :question_details
+  # resources :question_details
   resources :answers
   resources :tags
 
