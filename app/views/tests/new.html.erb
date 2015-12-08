@@ -1,5 +1,12 @@
 <h1>New Test</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+    <%= render 'form' %>
 
-<%= link_to 'Back', tests_path %>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= link_to 'Back', tests_path, class: 'btn btn-success' %>
+  </div>
+</div>
+

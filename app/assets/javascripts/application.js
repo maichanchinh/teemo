@@ -21,9 +21,5 @@
 
 //= require_tree .
 //= require bootstrap-sprockets
-//= require jquery-2.1.4.min
-//= require bootstrap.min
-//= require flat-ui.min
-
 
 

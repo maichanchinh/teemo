@@ -137,3 +137,6 @@ Temporary Items
 # sftp configuration file
 sftp-config.json
 
+public/uploads
+tmp
+logs

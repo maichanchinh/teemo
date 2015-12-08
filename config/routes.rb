@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :tests do
     resources :tests_assigns
     resources :test_tags
+    resources :test_questions
   end
   resources :questions do
     resources :question_details #test question details

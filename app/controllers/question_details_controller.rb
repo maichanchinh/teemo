@@ -1,6 +1,6 @@
 class QuestionDetailsController < ApplicationController
   before_action :set_question_detail, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_authorization_admin , only: [:new, :edit, :update, :destroy]
   # GET /question_details
   # GET /question_details.json
   def index
@@ -21,7 +21,7 @@ class QuestionDetailsController < ApplicationController
 
   # GET /question_details/1/edit
   def edit
-    @question = Question.find(params[:question_id])
+
     @question_detail = @question.question_detail.find(params[:id])
   end
 
@@ -31,7 +31,8 @@ class QuestionDetailsController < ApplicationController
     @question_detail = QuestionDetail.new(question_detail_params)
     respond_to do |format|
       if @question_detail.save
-        format.html { redirect_to question_question_details_path({question_id: @question.id}), notice: 'Question detail was successfully created.' }
+
+        format.html { redirect_to question_question_details_path({question_id: @question_detail.question_id}), notice: 'Question detail was successfully created.' }
         format.json { render :show, status: :created, location: @question_detail }
       else
         format.html { render :new }
@@ -45,7 +46,7 @@ class QuestionDetailsController < ApplicationController
   def update
     respond_to do |format|
       if @question_detail.update(question_detail_params)
-        format.html { redirect_to @question_detail, notice: 'Question detail was successfully updated.' }
+        format.html { redirect_to question_question_details_path({question_id: @question_detail.question_id}), notice: 'Question detail was successfully updated.' }
         format.json { render :show, status: :ok, location: @question_detail }
       else
         format.html { render :edit }
@@ -67,7 +68,9 @@ class QuestionDetailsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question_detail
-      @question_detail = QuestionDetail.find(params[:id])
+      @question = Question.find(params[:question_id])
+      @question_detail = @question.question_detail.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

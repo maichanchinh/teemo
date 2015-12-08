@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_authorization_admin , only: [:new, :edit, :update, :destroy]
   # GET /questions
   # GET /questions.json
   def index
@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
-    p @question_details = @question.question_detail
+    @question_details = @question.question_detail
   end
 
   # GET /questions/new

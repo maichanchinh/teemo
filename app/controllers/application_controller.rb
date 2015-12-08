@@ -2,9 +2,6 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
-  layout :layout_by_resource
-
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
   layout :layout_by_resource
@@ -16,12 +13,13 @@ class ApplicationController < ActionController::Base
     else
       'application'
     end
+
   end
 
-  def check_permitted
-    user = User.find(current_user)
-    unless user.has_role? :admin
-      redirect_to "/", :alert => "Access denied."
+  # Check user admin
+  def check_authorization_admin
+    unless current_user.has_role? :admin
+      redirect_to "/", notice: "you do not have authority to use this function"
     end
   end
 

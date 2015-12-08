@@ -1,6 +1,7 @@
 class TestsController < ApplicationController
   before_action :set_test, only: [:show, :edit, :update, :destroy]
-  before_action :check_permitted
+  before_action :check_authorization_admin , only: [:new, :edit, :update, :destroy]
+  before_action :set_title
   # GET /tests
   # GET /tests.json
   def index
@@ -61,8 +62,9 @@ class TestsController < ApplicationController
   end
 
   private
-    def check_authorization_admin
-      redirect_to "/" , notice: "you do not have authority to use this function" unless current_user.has_role? :admin
+
+    def set_title
+      @title = "app tests | admin"
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_test

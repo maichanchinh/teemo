@@ -1,4 +1,4 @@
-<%= form_for [:question,@question_detail],:url => question_question_details_path(:question), :html => {class:"form-horizontal", id:"save"} do |f| %>
+<%= form_for [@question,@question_detail],:html => {class:"form-horizontal", id:"save"} do |f| %>
   <% if @question_detail.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question_detail.errors.count, "error") %> prohibited this question_detail from being saved:</h2>
