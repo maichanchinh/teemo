@@ -1,0 +1,8 @@
+<%= form_for [@test, @test_assign], :html => {:class => 'form-inline', role: 'form'} do |f| %>
+    <div class="form-group">
+      <label class="sr-only" for="">label</label>
+      <%= f.label :user_id, class: 'sr-only' %>
+      <%= f.text_field :user_id, :class => 'form-control', :id => 'email', :placeholder => "email@gmail.com", :type => 'email' %>
+    </div>
+    <%= f.submit 'Assign', :class => 'btn btn-primary' %>
+<% end %>

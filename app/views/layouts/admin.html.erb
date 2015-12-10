@@ -1,40 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Teemo</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= stylesheet_link_tag    'default-admin', media: 'all', 'data-turbolinks-track' => true %>
+  <title><%= (@title.present?) ? (@title) : 'Teemo app' %></title>
+  <%= stylesheet_link_tag 'layout_admin', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'layout_admin', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<div class="admin-container">
+<body class="<%= controller_name %>">
+<header class="admin-container">
   <div class="top-menu">
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Teemo</a>
+        <%= link_to "Teemo", root_path, class: 'navbar-brand' %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse-01">
         <ul class="nav navbar-nav navbar-right">
-          <li class="active"><a href="#fakelink">Hello World</a></li>
-          <li><a href="#fakelink">Sign out</a></li>
+          <li><%= link_to "Test", tests_path %></li>
+          <li>
+            <% if user_signed_in? %>
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            <% end %>
+          </li>
         </ul>
       </div>
     </nav>
   </div>
-  <div class="admin-content">
-    <div class="row">
-      <div class="menu-left col-md-3">
-        <ul class="list-group">
-          <li class="list-group-item list-group-item-success"><a href="#">Cras justo odio</a></li>
-          <li class="list-group-item"><a href="#">Cras justo odio</a></li>
-          <li class="list-group-item"><a href="#">Cras justo odio</a></li>
-          <li class="list-group-item"><a href="#">Cras justo odio</a></li>
-          <li class="list-group-item"><a href="#">Cras justo odio</a></li>
-        </ul>
+</header>
+<section class="admin-content container">
+  <div class="row">
+    <div class="content-right">
+      <%= yield %>
+    </div>
+  </div>
+</section>
+<!-- Modal -->
+<div class="modal fade" id="modal-add-questions" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true"></button>
+        <h4 class="modal-title">Modal header</h3>
       </div>
-      <div class="content-right col-md-9">
-        <%= yield %>
+
+      <div class="modal-body">
+        <p>Modal content</p>
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+        gmail.com,gmail.com,gmail.com,gmail.com,gmail.com
+      </div>
+
+      <div class="modal-footer">
+        <a href="#" class="btn">OK</a>
       </div>
     </div>
   </div>

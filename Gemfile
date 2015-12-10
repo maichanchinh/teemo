@@ -35,15 +35,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 
 gem 'cancan' #user permissions
+
 gem 'bootstrap-sass'
 
 gem 'autoprefixer-rails', '6.1.1'
-
 gem 'jquery-ui-rails'
-
-gem 'less-rails-bootstrap'
-
-gem 'designmodo-flatuipro-rails'
 
 gem 'therubyracer'
 

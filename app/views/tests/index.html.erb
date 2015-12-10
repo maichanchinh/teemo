@@ -1,45 +1,45 @@
-<div class="row">
+<div class="row test">
   <h1>Listing Tests</h1>
 
-  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-    <%= link_to 'New Test', new_test_path, class: 'btn btn-block btn-lg btn-success' %>
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <%= link_to 'New Test', new_test_path, class: 'btn btn-block btn-lg btn-primary' %>
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+      <%= link_to 'List questions', questions_path, class: 'btn btn-block btn-lg btn-primary' %>
+    </div>
   </div>
-  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-    <%= link_to 'List questions', questions_path, class: 'btn btn-block btn-lg btn-success' %>
-  </div>
-</div>
-<div class="row list-tests">
-<% if @tests.blank? %>
+  <div class="list-tests">
+    <% if @tests.blank? %>
 
-  <div class="alert alert-warning" style="margin: 10px;">
-    <strong>Test is empty!</strong>
-  </div>
+        <div class="alert alert-warning" style="margin: 10px;">
+          <strong>Test is empty!</strong>
+        </div>
 
-<% else %>
-  <table class="table table-bordered table-hover table-responsive">
-    <thead>
-    <tr>
-      <th>User create</th>
-      <th>Name</th>
-      <th>Descripetion</th>
-      <th colspan="3"></th>
-    </tr>
-    </thead>
+    <% else %>
+        <table class="table table-bordered table-hover table-responsive">
+          <thead>
+          <tr>
+            <th>Name</th>
+            <th>Descripetion</th>
+            <th colspan="3">Action</th>
+          </tr>
+          </thead>
 
-    <tbody>
-    <% @tests.each do |test| %>
-      <tr>
-        <td><%= test.user.email %></td>
-        <td><%= test.name %></td>
-        <td><%= test.descripetion %></td>
-        <td><%= link_to 'Show Question', test %></td>
-        <td><%= link_to 'Edit', edit_test_path(test) %></td>
-        <td><%= link_to 'Destroy', test, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-      </tr>
+          <tbody>
+          <% @tests.each do |test| %>
+              <tr>
+                <td><%= test.name %></td>
+                <td><%= test.descripetion %></td>
+                <td><%= link_to 'Show Question', test %></td>
+                <td><%= link_to 'Edit', edit_test_path(test) %></td>
+                <td><%= link_to 'Destroy', test, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+              </tr>
+          <% end %>
+          </tbody>
+        </table>
     <% end %>
-    </tbody>
-  </table>
-<% end %>
+  </div>
 </div>
 
 

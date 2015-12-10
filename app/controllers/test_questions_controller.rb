@@ -1,10 +1,11 @@
 class TestQuestionsController < ApplicationController
+  before_action :set_test
   before_action :set_test_question, only: [:show, :edit, :update, :destroy]
 
   # GET /test_questions
   # GET /test_questions.json
   def index
-    @test_questions = TestQuestion.all
+    @test_questions = @test.test_questions
   end
 
   # GET /test_questions/1
@@ -14,7 +15,9 @@ class TestQuestionsController < ApplicationController
 
   # GET /test_questions/new
   def new
-    @test_question = TestQuestion.new
+    @questions = Question.where.not(id: @test.test_questions.map(&:question_id))
+    @test_question = @test.test_questions.new
+    @test_question_count = @test.test_questions.count
   end
 
   # GET /test_questions/1/edit
@@ -28,7 +31,7 @@ class TestQuestionsController < ApplicationController
 
     respond_to do |format|
       if @test_question.save
-        format.html { redirect_to @test_question, notice: 'Test question was successfully created.' }
+        format.html { redirect_to new_test_test_question_path(@test), notice: 'Test question was successfully created.' }
         format.json { render :show, status: :created, location: @test_question }
       else
         format.html { render :new }
@@ -62,7 +65,11 @@ class TestQuestionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+  def set_test
+    @test = Test.find(params[:test_id])
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
     def set_test_question
       @test_question = TestQuestion.find(params[:id])
     end

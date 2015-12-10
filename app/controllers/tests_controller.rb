@@ -11,6 +11,8 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+    @test_assign = TestsAssign.new
+    @test_questions = @test.questions.select(:content,:sort,:type)
   end
 
   # GET /tests/new
